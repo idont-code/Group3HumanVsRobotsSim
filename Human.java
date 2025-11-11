@@ -3,13 +3,15 @@ import java.util.ArrayList;
 
 public abstract class Human extends Units {
     private static int numHumans = 0;
-
+    
+    private double originalSpeed;
     private int cooldown = 0;
     private int DELAY = 50; 
 
     protected Human(int health, double speed, int range, int damage) {
         super(health, speed, range, damage, false); 
         numHumans++;
+        this.originalSpeed = speed;
     }
 
 
@@ -24,6 +26,9 @@ public abstract class Human extends Units {
         if (!targets.isEmpty() && cooldown == 0) {
             for (Robot r : targets) r.takeDamage(damage);
             cooldown = DELAY;
+            speed = 0;
+        } else if (targets.isEmpty()){
+            speed = originalSpeed;
         }
     }
      
