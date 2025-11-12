@@ -56,11 +56,12 @@ public abstract class Units extends SuperSmoothMover
     }
     
     public void act(){
-        isTouchingBuilding();
-        if (isRobot){
+        if (!isTouchingBuilding()) {
+        if (isRobot) {
             move(speed);
         } else {
             move(-speed);
+        }
         }
         updateHealthBar(); 
         checkEdges();
