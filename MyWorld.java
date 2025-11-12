@@ -12,15 +12,14 @@ public class MyWorld extends World
 
     }
         private void testPrepare() {
-<<<<<<< HEAD
+
         /*for (int i = 0; i < 5; i++) {
             RockThrower rt = new RockThrower(100, 1.5, 200, 10);
             addObject(rt, Greenfoot.getRandomNumber(getWidth() / 2) + getWidth()/2, Greenfoot.getRandomNumber(getHeight()));
-=======
         for (int i = 0; i < 5; i++) {
             RangedHuman rockThrower = new RangedHuman(100, 1.5, 200, 10, 100);
             addObject(rockThrower, Greenfoot.getRandomNumber(getWidth() / 2) + getWidth()/2, Greenfoot.getRandomNumber(getHeight()));
->>>>>>> b14af75208cdbabeeddaedce29c06904fc641446
+
         }
 
         for (int i = 0; i < 5; i++) {
@@ -34,13 +33,11 @@ public class MyWorld extends World
         }
         */
         for (int i = 0; i < 3; i++) {
-<<<<<<< HEAD
-            TinyRobot tr = new TinyRobot(150, 1.0, 75, 20);
-            addObject(tr, Greenfoot.getRandomNumber(getWidth() / 2), Greenfoot.getRandomNumber(areaHeight) + topEdge);
-=======
+
+            
             MeleeRobot tinyRobot = new MeleeRobot(150, 1.0, 75, 20, 50);
             addObject(tinyRobot, Greenfoot.getRandomNumber(getWidth() / 2), Greenfoot.getRandomNumber(getHeight()));
->>>>>>> b14af75208cdbabeeddaedce29c06904fc641446
+
         }
     
     
