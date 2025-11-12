@@ -34,7 +34,7 @@ public class MyWorld extends World
         */
         for (int i = 0; i < 3; i++) {
 
-            
+    
             MeleeRobot tinyRobot = new MeleeRobot(150, 1.0, 75, 20, 50);
             addObject(tinyRobot, Greenfoot.getRandomNumber(getWidth() / 2), Greenfoot.getRandomNumber(getHeight()));
 

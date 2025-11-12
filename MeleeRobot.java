@@ -10,6 +10,8 @@ public class MeleeRobot extends Robot {
 
     public MeleeRobot(int health, double speed, int range, int damage, int delay) {
         super(health, speed, range, damage, delay);
+        robot.scale(20,50);
+        setImage(robot);
     }
 
     public void act() {
