@@ -3,12 +3,11 @@ import java.util.ArrayList;
 
 public abstract class Robot extends Units {
     private static int numRobots = 0;
-    private int cooldown;
-    private int DELAY;
 
-    protected Robot(int health, double speed, int range, int damage) {
-        super(health, speed, range, damage, true);
+    protected Robot(int health, double speed, int range, int damage, int delay) {
+        super(health, speed, range, damage, delay, true);
         numRobots++;
+        this.originalSpeed = speed;
     }
 
     public void act() {
@@ -34,7 +33,10 @@ public abstract class Robot extends Units {
         ArrayList<Human> targets = new ArrayList<>(getObjectsInRange(range, Human.class));
         if (!targets.isEmpty() && cooldown == 0) {
             for (Human h : targets) h.takeDamage(damage);
-            cooldown = DELAY;
+            cooldown = delay;
+            speed = 0;
+        } else if (targets.isEmpty()){
+            speed = originalSpeed;
         }
     }
 
