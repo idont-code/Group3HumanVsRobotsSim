@@ -2,6 +2,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     GreenfootImage background = new GreenfootImage("images/background.png");
+    public static int topEdge = 275;
+    public static int areaHeight = 750;
     public MyWorld()
     {    
         super(1240,700, 1); 
@@ -10,7 +12,7 @@ public class MyWorld extends World
 
     }
         private void testPrepare() {
-        for (int i = 0; i < 5; i++) {
+        /*for (int i = 0; i < 5; i++) {
             RockThrower rt = new RockThrower(100, 1.5, 200, 10);
             addObject(rt, Greenfoot.getRandomNumber(getWidth() / 2) + getWidth()/2, Greenfoot.getRandomNumber(getHeight()));
         }
@@ -24,9 +26,10 @@ public class MyWorld extends World
             RockSmasher rs = new RockSmasher(150, 1.0, 75, 20);
             addObject(rs, Greenfoot.getRandomNumber(getWidth() / 2) + getWidth()/2, Greenfoot.getRandomNumber(getHeight()));
         }
+        */
         for (int i = 0; i < 3; i++) {
             TinyRobot tr = new TinyRobot(150, 1.0, 75, 20);
-            addObject(tr, Greenfoot.getRandomNumber(getWidth() / 2), Greenfoot.getRandomNumber(getHeight()));
+            addObject(tr, Greenfoot.getRandomNumber(getWidth() / 2), Greenfoot.getRandomNumber(areaHeight) + topEdge);
         }
     
     
@@ -35,5 +38,8 @@ public class MyWorld extends World
         
         Turret turret = new Turret();
         addObject(turret, 100 , getHeight()/2+100);
+        
+        //Turret turret1 = new Turret();
+        //addObject(turret1, 920 , getHeight()/2+100);
     }
 }

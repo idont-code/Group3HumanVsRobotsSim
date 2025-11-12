@@ -52,12 +52,14 @@ public abstract class Units extends SuperSmoothMover
     }
     
     public void act(){
+        isTouchingBuilding();
         if (isRobot){
             move(speed);
         } else {
             move(-speed);
         }
         updateHealthBar(); 
+        checkEdges();
     }
     
     protected Human getClosestHuman() {
@@ -90,6 +92,39 @@ public abstract class Units extends SuperSmoothMover
     protected void addedToWorld(World world) {
         healthBar = new SuperStatBar(maxHealth, health, this, 40, 6, 30, Color.GREEN, Color.RED, true, Color.BLACK, 1);
         world.addObject(healthBar, getX(), getY() + 30);
+    }
+    
+    protected void checkEdges() {
+        MyWorld world = (MyWorld) getWorld();
+        if (world == null) return;
+    
+        int worldWidth = world.getWidth();
+        int worldHeight = world.getHeight();
+        double x = getPreciseX();
+        double y = getPreciseY();
+    
+        // Remove if off left or right screen
+        if (x < 0 || x > worldWidth) {
+            if (healthBar != null) {
+                world.removeObject(healthBar);
+                healthBar = null; // prevent further access
+            }
+            world.removeObject(this);
+            return; // exit immediately — don't do anything else
+        }
+    
+        // Clamp Y so it stays within playable area
+        if (y < MyWorld.topEdge) {
+            setLocation(getX(), MyWorld.topEdge);
+        } else if (y > MyWorld.topEdge + MyWorld.areaHeight) {
+            setLocation(getX(), MyWorld.topEdge + MyWorld.areaHeight);
+        }
+    }
+
+
+    protected boolean isTouchingBuilding() {
+        // You can add more building types as needed
+        return (isTouching(Fences.class) || isTouching(Turret.class));
     }
     
     protected double getDistanceTo(Actor a) {

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Building
+comment0.text=\r\n\ Abstract\ class\ for\ all\ building-type\ objects\ (e.g.,\ Fences,\ Turrets).\r\n\ Contains\ shared\ properties\ like\ hitpoints\ and\ basic\ damage/removal\ logic.\r\n
+comment1.params=hp
+comment1.target=Building(int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=amount
+comment3.target=void\ damage(int)
+comment3.text=\r\n\ Damages\ the\ building\ by\ a\ given\ amount.\r\n
+comment4.params=
+comment4.target=void\ checkDestroyed()
+comment4.text=\r\n\ Checks\ if\ the\ building\ should\ be\ removed\ when\ HP\ reaches\ 0.\r\n
+comment5.params=
+comment5.target=void\ onDamage()
+comment5.text=\r\n\ Hook\ methods\ for\ subclasses\ to\ customize\ behavior.\r\n
+comment6.params=
+comment6.target=void\ onDestroyed()
+numComments=7

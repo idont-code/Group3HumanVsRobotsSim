@@ -1,83 +1,62 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList;
 
 public class Projectile extends SuperSmoothMover
 {
-    //speed for the projectile 
-    private double speed = 0;
-
-    //working on range(dissapears at certain range)
+    private double speed;      // magnitude of speed
+    private int direction;     // +1 right, -1 left
     private int timer = 0;
-    private int transparency = 255;
-    
-    //image for the projectile
     GreenfootImage laser = new GreenfootImage("images/laser.png");
-    public Projectile(double speed)
+
+    public Projectile(double speed, int direction)
     {
         this.speed = speed;
+        this.direction = direction;
+        setImage(laser);
     }
-    
+
     public void act()
     {
-        if(getWorld() == null)
-        {
-            return;
-        }
+        if (getWorld() == null) return;
+
         timer++;
         move();
+        if (getWorld() == null) return;
+
         checkCollision();
-        //dissapear();
+        if (getWorld() == null) return;
+
+        checkEdge();
     }
-    
-    private void dissapear()
-    {
-        if(timer %  2 == 0)
-        {
-            if(transparency < 0)
-            {
-                transparency = 0;
-            }
-            else if(transparency > 0)
-            {
-                speed += .5;
-                transparency -= 7;
-        
-            }
-        }
-        
-        if(transparency <= 0)
-        {
-            getWorld().removeObject(this);
-        }
-        else 
-        {
-            getImage().setTransparency(transparency);
-        }
-    
-    }
-    
+
     private void move()
     {
-        if(timer %  20 == 0 )
-        {
+        // Optional: accelerate every 20 acts
+        if (timer % 20 == 0) {
             speed += 1.5;
         }
-        
-        setLocation(getX() + speed,getY());
-        
+
+        double newX = getX() + speed * direction;
+        setLocation((int)Math.round(newX), getY());
     }
-    
+
     private void checkCollision()
     {
-        //InfantryMen menHit = (InfantryMen)getOneIntersectingObject(InfantryMen.class);
         Fences buildingHit = (Fences)getOneIntersectingObject(Fences.class);
-        
-        if(buildingHit != null)
-        {
-            getWorld().removeObject(this);
+        if (buildingHit != null) {
             buildingHit.damage(500);
+            if(getWorld() != null) getWorld().removeObject(this);
+        }
+        
+        
+    }
+
+    private void checkEdge()
+    {
+        if (getWorld() == null) return;
+
+        int x = getX();
+        if (x <= 0 || x >= getWorld().getWidth() - 1) {
+            getWorld().removeObject(this);
         }
     }
-    
-    
 }

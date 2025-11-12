@@ -15,8 +15,8 @@ public class RockThrower extends Human {
     }
 
     private void throwRock(Robot target) {
-        Projectile rock = new Projectile(getSpeed());
-        getWorld().addObject(rock, getX(), getY());
+        //Projectile rock = new Projectile(getSpeed());
+        //getWorld().addObject(rock, getX(), getY());
     }
 
     private void moveForward() {
